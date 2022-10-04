@@ -4,7 +4,7 @@ import CartWidget from './CartWidget';
 const Navbar = () => {
     return (
         <nav>
-            <h1>Comisión 34775</h1>
+            <h1>React</h1>
             <ul>
                 <li>Remeras</li>
                 <li>Camisas</li>
