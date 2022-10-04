@@ -1,38 +1,151 @@
-.App {
-  text-align: center;
+:root {
+    --primary: rgb(49, 1, 89);
+    --secondary: rgb(168, 129, 196);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* NAVBAR */
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    box-shadow: 0px 0px 10px 1px #ccc;
 }
 
-.App-link {
-  color: #61dafb;
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+nav ul li {
+    margin: 0px 10px;
+}
+
+.widget-container {
+    display: flex;
+    align-items: center;
+}
+
+/* MAIN */
+
+main {
+    min-height: 80vh;
+}
+
+.item-list-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.item-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* CARD */
+
+.card {
+    box-shadow: 4px 4px 10px 0.5px #b0b0b0;
+    max-width: 35%;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: none;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    /* border-bottom: 4px solid red; */
+}
+
+.card-info {
+    padding: 8px 12px;
+    background-color: var(--secondary);
+    border-radius: 0px 0px 8px 8px;
+}
+
+.card-info h4 {
+    margin: 8px 0px;
+}
+
+.card-info h5 {
+    color: white;
+    background-color: var(--primary);
+    display: inline-block;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+/* ITEM COUNT */
+
+.container-count {
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 1px #ccc;
+}
+
+.count-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.count-btn button {
+    background-color: var(--secondary);
+    color: black;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 6px;
+    cursor: pointer;
+}
+
+.count-btn p {
+    font-size: 20px;
+}
+
+.add-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px;
+    cursor: pointer;
+}
+
+/* FOOTER */
+
+footer {
+    background-color: var(--primary);
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
 }
