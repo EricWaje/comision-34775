@@ -60,7 +60,7 @@ main {
 
 .card {
     box-shadow: 0px 0px 10px 0.2px #b0b0b0;
-    max-width: 15%;
+    width: 15%;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -87,6 +87,10 @@ main {
     border-radius: 0px 0px 8px 8px;
 }
 
+.card-info h2 {
+    font-size: 16px;
+}
+
 .card-info h4 {
     margin: 8px 0px;
 }
@@ -100,12 +104,26 @@ main {
     font-size: 12px;
 }
 
+/* DETAIL */
+.container-detail {
+    display: flex;
+    align-items: flex-start;
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    padding: 15px;
+    margin: 20px;
+}
+
+.container-detail img {
+    width: 350px;
+}
+
 /* ITEM COUNT */
 
 .container-count {
     display: flex;
     flex-direction: column;
-    width: 10%;
+    width: 20%;
     padding: 8px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px 1px #ccc;
@@ -116,6 +134,11 @@ main {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 5px;
+}
+
+.count-btn button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
 }
 
 .count-btn button {
