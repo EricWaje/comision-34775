@@ -2,29 +2,20 @@ import React, { useState } from 'react';
 
 const ItemCount = (props) => {
     const [count, setCount] = useState(props.initial);
-
-    // const initial = props.initial
-    // const stock = props.stock;
-    // const {initial, stock} = props
+    const { prueba } = props;
 
     //console.log(props);
 
-    // console.log(useState(100));
-
     const sumar = () => {
-        // if (count < props.stock) {
-        //     setCount(count + 1);
-        // }
-
         count < props.stock && setCount(count + 1);
-        // count < props.stock
-        //     ? setCount(count + 1)
-        //     : alert('Máximo stock alcanzado');
     };
 
     const restar = () => {
         count > props.initial && setCount(count - 1);
-        //setCount(count - 1);
+    };
+
+    const add = () => {
+        prueba(count);
     };
 
     return (
@@ -38,7 +29,9 @@ const ItemCount = (props) => {
                     -
                 </button>
             </div>
-            <button className="add-btn">Agregar al carrito</button>
+            <button onClick={add} className="add-btn">
+                Agregar al carrito
+            </button>
         </div>
     );
 };

@@ -30,7 +30,7 @@ const ItemDetailContainer = () => {
             });
     }, [id]);
 
-    console.log(item);
+    //console.log(item);
 
     return (
         <div className="item-list-container">
