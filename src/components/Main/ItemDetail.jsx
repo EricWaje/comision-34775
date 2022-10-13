@@ -1,14 +1,18 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { CartContext } from '../../context/CartContext';
 import ItemCount from './ItemCount';
 
 const ItemDetail = ({ item }) => {
-    const [show, setShow] = useState(true);
-    /* const [unidades, setUnidades] = useState(0); */
+    const [unidades, setUnidades] = useState(0);
+
+    const { addToCart } = useContext(CartContext);
 
     const prueba = (numero) => {
-        console.log(`añadiste ${numero}`);
-        //setUnidades(numero);
-        setShow(false);
+        //console.log(`añadiste ${numero}`);
+        setUnidades(numero);
+        //item, numero
+        addToCart(item, numero);
     };
 
     return (
@@ -21,16 +25,12 @@ const ItemDetail = ({ item }) => {
                     rem, consequatur accusamus dicta incidunt sapiente cum ipsa,
                     ducimus
                 </p>
-                <ItemCount prueba={prueba} stock={10} initial={1} />
-                {show ? (
-                    <p>Este es el item count</p>
+
+                {unidades === 0 ? (
+                    <ItemCount prueba={prueba} stock={item.stock} initial={1} />
                 ) : (
-                    <button>Ir al carrito</button>
+                    <Link to="/cart">Ir al carrito</Link>
                 )}
-                {/* {condicion
-                    ? 
-                    : 
-                } */}
             </div>
         </div>
     );
