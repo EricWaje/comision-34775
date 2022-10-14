@@ -1,30 +1,23 @@
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
+import { AiFillDelete } from 'react-icons/ai';
 
 const Cart = () => {
     const { cart, deleteAll } = useContext(CartContext);
 
     return (
-        <div>
+        <div className="cart-container">
             {cart.map((prod) => (
-                <div
-                    key={prod.id}
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        padding: '10px',
-                        margin: '10px',
-                    }}
-                >
+                <div className="cart-detail" key={prod.id}>
                     <img src={prod.img} alt={prod.title} width="80px" />
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <div className="cart-detail-info">
                         <h2>{prod.title}</h2>
-                        <h3 style={{ margin: '0px 10px' }}>$ {prod.price}.-</h3>
                         <h3>Cantidad: {prod.cantidad}</h3>
-                        <h3>Subtotal: ${prod.price * prod.cantidad}.-</h3>
+                        <h3>Precio: ${prod.price}.-</h3>
+                        <h4>Subtotal: ${prod.price * prod.cantidad}.-</h4>
                     </div>
-                    <button>Delete</button>
+
+                    <AiFillDelete size={25} color="red" />
                 </div>
             ))}
             <h2>Total: $0</h2>
