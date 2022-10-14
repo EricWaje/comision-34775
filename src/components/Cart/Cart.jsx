@@ -3,7 +3,7 @@ import { CartContext } from '../../context/CartContext';
 import { AiFillDelete } from 'react-icons/ai';
 
 const Cart = () => {
-    const { cart, deleteAll } = useContext(CartContext);
+    const { cart, deleteAll, deleteOne } = useContext(CartContext);
 
     return (
         <div className="cart-container">
@@ -17,7 +17,11 @@ const Cart = () => {
                         <h4>Subtotal: ${prod.price * prod.cantidad}.-</h4>
                     </div>
 
-                    <AiFillDelete size={25} color="red" />
+                    <AiFillDelete
+                        size={25}
+                        color="red"
+                        onClick={() => deleteOne(prod.id)}
+                    />
                 </div>
             ))}
             <h2>Total: $0</h2>
