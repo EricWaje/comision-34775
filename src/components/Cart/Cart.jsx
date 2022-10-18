@@ -5,6 +5,10 @@ import { AiFillDelete } from 'react-icons/ai';
 const Cart = () => {
     const { cart, deleteAll, deleteOne } = useContext(CartContext);
 
+    if (cart.length === 0) {
+        return <h1>Aún no hay productos</h1>;
+    }
+
     return (
         <div className="cart-container">
             {cart.map((prod) => (

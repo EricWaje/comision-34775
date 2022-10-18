@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 
 const ItemDetailContainer = () => {
     const [item, setItem] = useState({});
-
+    //estado de loading
     const { id } = useParams();
     //estado
 
@@ -18,7 +18,7 @@ const ItemDetailContainer = () => {
 
                 setTimeout(() => {
                     res(producto);
-                }, 2000);
+                }, 2500);
             });
         };
         traerProducto()
