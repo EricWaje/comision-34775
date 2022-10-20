@@ -1,33 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const ItemCount = (props) => {
-    const [count, setCount] = useState(props.initial);
-    const { prueba } = props;
+const ItemCount = ({ stock, initial = 1, prueba }) => {
+    const [count, setCount] = useState(initial);
 
     //console.log(props);
 
     const sumar = () => {
-        count < props.stock && setCount(count + 1);
+        count < stock && setCount(count + 1);
     };
 
     const restar = () => {
-        count > props.initial && setCount(count - 1);
+        count > 1 && setCount(count - 1);
     };
 
     const add = () => {
         prueba(count);
     };
 
+    useEffect(() => {
+        setCount(initial);
+    }, [initial]);
+
     return (
         <div className="container-count">
             <div className="count-btn">
-                <button disabled={count === props.stock} onClick={sumar}>
+                <button disabled={count === stock} onClick={sumar}>
                     +
                 </button>
                 <p>{count}</p>
-                <button disabled={count === props.initial} onClick={restar}>
-                    -
-                </button>
+                <button onClick={restar}>-</button>
             </div>
             <button onClick={add} className="add-btn">
                 Agregar al carrito

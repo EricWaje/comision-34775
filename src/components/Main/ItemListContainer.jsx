@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import ItemList from './ItemList'; //-> import por default
-import { products } from '../../mock/productsMock';
 import { useParams } from 'react-router-dom';
 import PropagateLoader from 'react-spinners/PropagateLoader';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { db } from '../../services/firebaseConfig';
 
 const ItemListContainer = () => {
     const [items, setItems] = useState([]);
@@ -11,30 +12,28 @@ const ItemListContainer = () => {
     const { categoryName } = useParams();
 
     useEffect(() => {
-        const traerProductos = () => {
-            return new Promise((res, rej) => {
-                const prodFiltrados = products.filter(
-                    (prod) => prod.category === categoryName
-                );
-                const prod = categoryName ? prodFiltrados : products;
-                setTimeout(() => {
-                    res(prod);
-                }, 2500);
-            });
-        };
-        traerProductos()
+        const collectionProd = collection(db, 'productos');
+        //const q = query(collectionProd, where('category', '==', categoryName));
+
+        getDocs(collectionProd)
             .then((res) => {
-                setItems(res);
-                //setLoading(false)
+                //console.log(res.docs);
+                //.data()
+                const products = res.docs.map((prod) => {
+                    return {
+                        id: prod.id,
+                        ...prod.data(),
+                    };
+                });
+                //console.log(products);
+                setItems(products);
             })
             .catch((error) => {
                 console.log(error);
             })
             .finally(() => {
                 setLoading(false);
-                //se ejecuta siempre, más allá si la promesa cae en el then o en el catch
             });
-
         return () => setLoading(true);
     }, [categoryName]);
 
@@ -63,3 +62,29 @@ const ItemListContainer = () => {
 };
 
 export default ItemListContainer;
+
+//  const traerProductos = () => {
+//      return new Promise((res, rej) => {
+//          const prodFiltrados = products.filter(
+//              (prod) => prod.category === categoryName
+//          );
+//          const prod = categoryName ? prodFiltrados : products;
+//          setTimeout(() => {
+//              res(prod);
+//          }, 500);
+//      });
+//  };
+//  traerProductos()
+//      .then((res) => {
+//          setItems(res);
+//          //setLoading(false)
+//      })
+//      .catch((error) => {
+//          console.log(error);
+//      })
+//      .finally(() => {
+//          setLoading(false);
+//          //se ejecuta siempre, más allá si la promesa cae en el then o en el catch
+//      });
+
+//  return () => setLoading(true);

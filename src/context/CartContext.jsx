@@ -65,11 +65,23 @@ const Provider = ({ children }) => {
     //sumar precio total
     //for, forEach, for of, reduce
 
-    console.log(cart);
+    //console.log(cart);
+
+    const getProductQuantity = (id) => {
+        const product = cart.find((prod) => prod.id === id);
+        return product?.cantidad;
+    };
 
     return (
         <CartContext.Provider
-            value={{ cart, totalUnidades, addToCart, deleteAll, deleteOne }}
+            value={{
+                cart,
+                totalUnidades,
+                addToCart,
+                deleteAll,
+                deleteOne,
+                getProductQuantity,
+            }}
         >
             {children}
         </CartContext.Provider>

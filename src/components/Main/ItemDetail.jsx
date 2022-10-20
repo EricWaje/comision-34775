@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const ItemDetail = ({ item }) => {
     const [unidades, setUnidades] = useState(0);
 
-    const { addToCart } = useContext(CartContext);
+    const { addToCart, getProductQuantity } = useContext(CartContext);
 
     const prueba = (numero) => {
         //console.log(`añadiste ${numero}`);
@@ -17,6 +17,8 @@ const ItemDetail = ({ item }) => {
         addToCart(item, numero);
         toast.success(`Agregaste ${numero} unidades`);
     };
+
+    const quantity = getProductQuantity(item.id);
 
     return (
         /* className={unidades === 0 ? "container-detail" : 'otra'} */
@@ -31,16 +33,12 @@ const ItemDetail = ({ item }) => {
                     ducimus
                 </p>
 
-                {
-                    <h2 style={{ color: unidades === 0 ? 'red' : 'blue' }}>
-                        {unidades === 0
-                            ? `Hay ${unidades} unidades`
-                            : `Ya agregaste`}
-                    </h2>
-                }
-
                 {unidades === 0 ? (
-                    <ItemCount prueba={prueba} stock={item.stock} initial={1} />
+                    <ItemCount
+                        prueba={prueba}
+                        stock={item.stock}
+                        initial={quantity}
+                    />
                 ) : (
                     <Link to="/cart">Ir al carrito</Link>
                 )}

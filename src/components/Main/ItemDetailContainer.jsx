@@ -1,36 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import ItemDetail from './ItemDetail';
-import { products } from '../../mock/productsMock';
 import { useParams } from 'react-router-dom';
+import { collection, doc, getDoc } from 'firebase/firestore';
+import { db } from '../../services/firebaseConfig';
 
 const ItemDetailContainer = () => {
     const [item, setItem] = useState({});
-    //estado de loading
     const { id } = useParams();
-    //estado
 
     useEffect(() => {
-        const traerProducto = () => {
-            return new Promise((res, rej) => {
-                const producto = products.find(
-                    (prod) => prod.id === Number(id)
-                );
+        const collectionProd = collection(db, 'productos');
+        const ref = doc(collectionProd, id);
 
-                setTimeout(() => {
-                    res(producto);
-                }, 2500);
-            });
-        };
-        traerProducto()
+        getDoc(ref)
             .then((res) => {
-                setItem(res);
+                //console.log(res);
+                setItem({
+                    id: res.id,
+                    ...res.data(),
+                });
             })
             .catch((error) => {
                 console.log(error);
             });
     }, [id]);
-
-    //console.log(item);
 
     return (
         <div className="item-list-container">
@@ -41,9 +34,19 @@ const ItemDetailContainer = () => {
 
 export default ItemDetailContainer;
 
-//método de array que devuelve un {}
+// const traerProducto = () => {
+//     return new Promise((res, rej) => {
+//         const producto = products.find((prod) => prod.id === Number(id));
 
-// filter -> []
-// find -> {}
-
-//products.find((prod)=> prod.id === 1)
+//         setTimeout(() => {
+//             res(producto);
+//         }, 500);
+//     });
+// };
+// traerProducto()
+//     .then((res) => {
+//         setItem(res);
+//     })
+//     .catch((error) => {
+//         console.log(error);
+//     });
