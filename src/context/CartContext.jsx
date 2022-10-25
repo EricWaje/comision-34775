@@ -63,6 +63,9 @@ const Provider = ({ children }) => {
     };
 
     //sumar precio total
+    const total = () => {
+        return 1000;
+    };
     //for, forEach, for of, reduce
 
     //console.log(cart);
@@ -76,6 +79,7 @@ const Provider = ({ children }) => {
         <CartContext.Provider
             value={{
                 cart,
+                total,
                 totalUnidades,
                 addToCart,
                 deleteAll,

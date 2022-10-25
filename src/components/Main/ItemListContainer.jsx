@@ -13,9 +13,13 @@ const ItemListContainer = () => {
 
     useEffect(() => {
         const collectionProd = collection(db, 'productos');
+
+        const referencia = categoryName
+            ? query(collectionProd, where('category', '==', categoryName))
+            : collectionProd;
         //const q = query(collectionProd, where('category', '==', categoryName));
 
-        getDocs(collectionProd)
+        getDocs(referencia)
             .then((res) => {
                 //console.log(res.docs);
                 //.data()
@@ -34,6 +38,7 @@ const ItemListContainer = () => {
             .finally(() => {
                 setLoading(false);
             });
+
         return () => setLoading(true);
     }, [categoryName]);
 

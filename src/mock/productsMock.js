@@ -1,6 +1,5 @@
 export const products = [
     {
-        id: 1,
         title: 'Remera blanca',
         price: 200,
         stock: 10,
@@ -9,7 +8,6 @@ export const products = [
         //img: 'img/remera.png',
     },
     {
-        id: 2,
         title: 'Camisa azul',
         price: 300,
         stock: 5,
@@ -17,7 +15,6 @@ export const products = [
         img: 'https://res.cloudinary.com/ericwaje/image/upload/v1619372706/camisa4_ehruek.jpg',
     },
     {
-        id: 3,
         title: 'Gorra negra',
         price: 20,
         stock: 3,

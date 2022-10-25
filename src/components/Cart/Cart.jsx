@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 import { AiFillDelete } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
     const { cart, deleteAll, deleteOne } = useContext(CartContext);
@@ -30,6 +31,16 @@ const Cart = () => {
             ))}
             <h2>Total: $0</h2>
             <button onClick={deleteAll}>Eliminar todo el carrito</button>
+            <Link
+                style={{
+                    border: '2px solid green',
+                    padding: '4px 6px',
+                    borderRadius: '8px',
+                }}
+                to="/checkout"
+            >
+                Checkout
+            </Link>
         </div>
     );
 };

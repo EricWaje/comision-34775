@@ -1,15 +1,41 @@
-import { useEffect, useState } from 'react';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { useContext, useState } from 'react';
+import { CartContext } from '../../context/CartContext';
+import { db } from '../../services/firebaseConfig';
 
 const Form = () => {
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const [orderId, setOrderId] = useState('');
+
+    const { cart, total, deleteAll } = useContext(CartContext);
+
+    const totalPrice = total();
 
     const handleSubmit = (e) => {
+        setLoading(true);
         e.preventDefault();
-        //console.log(e.target);
-        // console.dir(e.target.elements.nombre.value);
-        // console.dir(e.target.elements.apellido.value);
-        console.log({ name, lastName });
+        //console.log({ name, lastName });
+        const order = {
+            buyer: { name, lastName },
+            items: cart,
+            total: totalPrice,
+            date: serverTimestamp(),
+        };
+
+        const ordersCollection = collection(db, 'orders');
+        addDoc(ordersCollection, order)
+            .then((res) => {
+                //console.log(res.id);
+                setOrderId(res.id);
+                deleteAll();
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .finally(() => setLoading(false));
     };
 
     const handleChangeName = (e) => {
@@ -20,20 +46,15 @@ const Form = () => {
         setLastName(e.target.value);
     };
 
-    const handleMouseMove = (e) => {
-        //console.log(e.clientX, e.clientY);
-    };
+    console.log(orderId);
 
-    useEffect(() => {
-        window.addEventListener('mousemove', handleMouseMove);
-        //conexión
-        return () => {
-            //clean up function
-            window.removeEventListener('mousemove', handleMouseMove);
-            //clearInterval
-            //abortar conexíon
-        };
-    });
+    if (orderId) {
+        return (
+            <h1>
+                Gracias por tu compra, tu número de seguimiento es ${orderId}
+            </h1>
+        );
+    }
 
     return (
         <div
@@ -44,9 +65,6 @@ const Form = () => {
                 alignItems: 'center',
             }}
         >
-            <div>
-                <button>Click!</button>
-            </div>
             <form onSubmit={handleSubmit} action="">
                 <input
                     type="text"
@@ -62,7 +80,7 @@ const Form = () => {
                     onChange={handleChangeLastName}
                     value={lastName}
                 />
-                <button>Enviar</button>
+                <button>{loading ? 'Enviando...' : 'Enviar'}</button>
             </form>
         </div>
     );

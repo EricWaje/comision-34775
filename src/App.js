@@ -7,6 +7,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Cart from './components/Cart/Cart';
 import Form from './components/Form/Form';
 import Provider from './context/CartContext';
+// import { addDoc, collection } from 'firebase/firestore';
+// import { db } from './services/firebaseConfig';
+// import { products } from './mock/productsMock';
+
+// const ref = collection(db, 'productos');
+// products.map((prod) => addDoc(ref, prod));
 
 function App() {
     return (
@@ -21,7 +27,7 @@ function App() {
                     />
                     <Route path="/item/:id" element={<ItemDetailContainer />} />
                     <Route path="/cart" element={<Cart />} />
-                    <Route path="/form" element={<Form />} />
+                    <Route path="/checkout" element={<Form />} />
                 </Routes>
                 <Footer />
             </BrowserRouter>
