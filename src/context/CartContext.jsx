@@ -20,8 +20,6 @@ const Provider = ({ children }) => {
                 const prodActualizado = {
                     ...prodDelCart,
                     cantidad: prodAgregado.cantidad,
-                    //Opción 2 para pisar la cantidad (habría que hacer un paso más luego para poder mostrarle al user la cantidad que ya tiene en el carrito de ese producto)
-                    //cantidad: prodAgregado.cantidad
                 };
                 return prodActualizado;
             } else {

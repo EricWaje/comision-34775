@@ -4,7 +4,9 @@ import { CartContext } from '../../context/CartContext';
 
 const CartWidget = () => {
     const { totalUnidades } = useContext(CartContext);
+
     const total = totalUnidades();
+
     return (
         <div className="widget-container">
             <AiOutlineShoppingCart size={20} />

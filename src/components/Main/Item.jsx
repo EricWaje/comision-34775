@@ -11,7 +11,11 @@ const Item = ({ prod }) => {
                 <h2>{prod.title}</h2>
                 <h4>${prod.price}.-</h4>
                 <h5>#{prod.category}</h5>
-                <Link to={`/item/${prod.id}`}>Ver detalle</Link>
+                {prod.stock === 0 ? (
+                    <h6>No hay stock</h6>
+                ) : (
+                    <Link to={`/item/${prod.id}`}>Ver detalle</Link>
+                )}
             </div>
         </article>
     );

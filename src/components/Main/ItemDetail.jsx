@@ -34,11 +34,15 @@ const ItemDetail = ({ item }) => {
                 </p>
 
                 {unidades === 0 ? (
-                    <ItemCount
-                        prueba={prueba}
-                        stock={item.stock}
-                        initial={quantity}
-                    />
+                    item.stock === 0 ? (
+                        <h1>No tiene stock</h1>
+                    ) : (
+                        <ItemCount
+                            prueba={prueba}
+                            stock={item.stock}
+                            initial={quantity}
+                        />
+                    )
                 ) : (
                     <Link to="/cart">Ir al carrito</Link>
                 )}
