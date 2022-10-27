@@ -17,7 +17,6 @@ const ItemListContainer = () => {
         const referencia = categoryName
             ? query(collectionProd, where('category', '==', categoryName))
             : collectionProd;
-        //const q = query(collectionProd, where('category', '==', categoryName));
 
         getDocs(referencia)
             .then((res) => {

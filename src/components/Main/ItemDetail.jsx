@@ -21,7 +21,6 @@ const ItemDetail = ({ item }) => {
     const quantity = getProductQuantity(item.id);
 
     return (
-        /* className={unidades === 0 ? "container-detail" : 'otra'} */
         <div className="container-detail">
             <ToastContainer />
             <img src={item.img} alt="" />

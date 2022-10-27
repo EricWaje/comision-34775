@@ -26,7 +26,7 @@ const Form = () => {
     const handleSubmit = async (e) => {
         setLoading(true);
         e.preventDefault();
-        //console.log({ name, lastName });
+
         try {
             const order = {
                 buyer: { name, lastName },
@@ -36,8 +36,6 @@ const Form = () => {
             };
 
             const ids = cart.map((prod) => prod.id);
-            //['asd656vhd','vdsjsjkl43j534','ds78cdc']
-            console.log(ids);
 
             const productsRef = collection(db, 'productos');
 
@@ -78,7 +76,6 @@ const Form = () => {
             } else {
                 console.log('No hay stock de algún producto');
             }
-            console.log(outOfStock);
         } catch (error) {
             console.log(error);
         } finally {

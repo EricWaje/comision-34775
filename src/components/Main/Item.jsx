@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Item = ({ prod }) => {
-    //console.log(prod);
-    //renderizado en el DOM de los productos
     return (
         <article className="card">
             <img src={prod.img} alt={prod.title} />

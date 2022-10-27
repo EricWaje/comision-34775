@@ -30,16 +30,6 @@ const Provider = ({ children }) => {
         setCart(carritoActualizado);
     };
 
-    //MISMA FUNCION QUE LA DE ARRIBA PERO CON TERNARIO
-
-    // const sumarCantidad2 = (prodAgregado) => {
-    //     setCart(cart.map((prodDelCart) => {
-    //         prodDelCart.id === prodAgregado.id
-    //             ? { ...prodDelCart, cantidad: prodAgregado.cantidad }
-    //             : prodDelCart;
-    //     }));
-    // };
-
     const isInCart = (id) => cart.some((prod) => prod.id === id);
 
     const deleteAll = () => setCart([]);
@@ -49,8 +39,6 @@ const Provider = ({ children }) => {
         setCart(prodFiltrados);
     };
 
-    //sumar cantidad total de unidades
-    //for, forEach, for of, reduce
     const totalUnidades = () => {
         let acc = 0;
         const copia = [...cart];
@@ -60,13 +48,9 @@ const Provider = ({ children }) => {
         return acc;
     };
 
-    //sumar precio total
     const total = () => {
         return 1000;
     };
-    //for, forEach, for of, reduce
-
-    //console.log(cart);
 
     const getProductQuantity = (id) => {
         const product = cart.find((prod) => prod.id === id);
