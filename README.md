@@ -2,7 +2,7 @@
 
 ![](public/logo192.png)
 
-Descripcion del proyecto.
+Descripcion del proyecto del curso de React.
 
 ## Librerías utilizadas
 
